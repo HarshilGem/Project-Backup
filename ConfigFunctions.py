@@ -1,6 +1,7 @@
 import os
 import tkinter as tk
 from tkinter import ttk
+import FolderFunctions as f
 
 def create_config_file(src):
     print_directory_contents(src)
@@ -39,7 +40,7 @@ def create_checkbox_gui(arr):
         selected_items = [item for i, item in enumerate(arr) if checkbox_values[i].get()]
         print(selected_items)  # Replace with your desired action
 
-    ok_button = ttk.Button(frame, text="OK", command=get_selected_items)
+    ok_button = ttk.Button(frame, text="Update Comfig", command=get_selected_items)
     ok_button.pack()
 
     # Configure the canvas scrolling
@@ -50,18 +51,32 @@ def create_checkbox_gui(arr):
 def print_directory_contents(directory):
     i = 0
     output = []
+    output.append("Select all")
     for item in os.listdir(directory):
         item_path = os.path.join(directory, item)
         if os.path.isdir(item_path):
             print('Directory:', item_path)
-            output.append("DIR " + item_path)
+            output.append("📂 " + item_path)
         else:
             print('File:', item_path)
-            output.append("FIL " + item_path)
+            output.append("📄 " + item_path)
+
+    # if output has "Select all", output = os.listdir(directory)
+    output.sort()
     return output
 
+def alter_dir():
+    root = tk.Tk()
+    label = tk.Label(root, text="Select the directory")
+    button = tk.Button(root, text="Ok")
+    label.pack()
+    button.pack()
 
-# directory_path = 'D:\\HarshilProject\\src'
-# print_directory_contents(directory_path)
-# print(print_directory_contents(directory_path))
-# create_checkbox_gui(print_directory_contents(directory_path))
+    return new_src_folder
+
+def new_src_folder():
+    tk.Tk().withdraw()  # prevents an empty tkinter window from appearing
+    folder_path = f.askdirectory()
+    return folder_path
+
+alter_dir()
