@@ -1,7 +1,9 @@
 import tkinter as tk
 from  tkinter.filedialog import askdirectory
 
-def create_config():
+config_location = "D:\HarshilProject\Output\project_backup.config"
+
+def create_config(): #TODO: Add interval and selection adding
     tk.Tk().withdraw()  # prevents an empty tkinter window from appearing
     config_location = askdirectory(title="Select Folder for saving config file")
     config_location = config_location + "/project_backup.config"
@@ -14,22 +16,24 @@ def create_config():
         c.write("")
     a = open(config_location, "a")
 
-    src = askdirectory(title="Select Source Folder")
-    dest = askdirectory(title="Select Destination Folder")
-    a.write("src=" + src + "\n")
-    print("src written")
-    a.write("dest=" + dest + "\n")
-    print("dest written")
-    # a.write("interval=" + get_number_from_gui() + "\n")
-    print("interval written")
-    # a.write("selected=" + get_subdata_config(src) + "\n")
+    a.write("src=" + askdirectory(title="Select Source Folder") + "\n")
+    a.write("dst=" + askdirectory(title="Select Destination Folder") + "\n")
 
-    return True
-def read_config(field):
+    # a.write("int=" + get_number_from_gui() + "\n")
+    # a.write("sel=" + get_subdata_config(src) + "\n")
+
+def read_config(field): #Done
+    config = open(config_location, "r")
+    Lines = config.readlines()
+
+    for line in Lines:
+        print("Checking: " + line)
+        if(line.find(field) == 0):
+            return line[4:len(line)]
     return ""
+
 def alter_config():
     return True
-
 
 def get_number_from_gui():
     def submit():
@@ -40,7 +44,7 @@ def get_number_from_gui():
     window = tk.Tk()
     window.title("Number Input")
 
-    label = tk.Label(window, text="Enter a number:")
+    label = tk.Label(window, text="Enter a number: ")
     label.pack()
 
     entry = tk.Entry(window)
@@ -51,4 +55,4 @@ def get_number_from_gui():
 
     window.mainloop()
 
-create_config()
+print("output: " + read_config("int"))
