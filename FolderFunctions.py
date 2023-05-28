@@ -1,6 +1,11 @@
 import os
 import shutil
 
+
+def file_read_content():
+    return ""
+def file_write_content():
+    return True
 def copyFolderData(src, dest):
     if not os.path.exists(src) or not os.path.isdir(src):
         print(f"Source folder '{src}' does not exist.")
@@ -15,7 +20,6 @@ def copyFolderData(src, dest):
 
 
     shutil.copytree(src, dest)
-
 def cleanDir(dir):
     print("Cleaning folder")
     try:
