@@ -1,14 +1,15 @@
 def create_config():
     print("Opening web page")
 
-def read_config(field, config_location, return_line_number = False):  # Done
+
+def read_config(field, config_location, return_line_number=False):  # Done
     config = open(config_location, "r")
-    Lines = config.readlines()
+    lines = config.readlines()
 
     i = 0
-    for line in Lines:
+    for line in lines:
         # print("Checking: " + line)
-        if (line.find(field) == 0):
+        if line.find(field) == 0:
             if return_line_number:
                 # print("Returning")
                 return i
