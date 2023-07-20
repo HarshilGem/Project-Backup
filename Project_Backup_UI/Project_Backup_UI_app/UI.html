@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Your Django Website</title>
+</head>
+<body>
+    <h1>Your Form</h1>
+    <form method="post">
+        {% csrf_token %}
+        <label for="field1">Field 1:</label>
+        <input type="text" name="field1" required><br>
+
+        <label for="field2">Field 2:</label>
+        <input type="text" name="field2" required><br>
+
+        <label for="field3">Field 3:</label>
+        <input type="text" name="field3" required><br>
+
+        <label for="checkbox_list">Checkbox List:</label>
+        <input type="checkbox" name="checkbox_list"><br>
+
+        <input type="submit" value="Submit">
+    </form>
+
+    <div>
+        <h2>Submitted Data:</h2>
+        {% for item in data %}
+            <p>Field 1: {{ item.field1 }}</p>
+            <p>Field 2: {{ item.field2 }}</p>
+            <p>Field 3: {{ item.field3 }}</p>
+            <p>Checkbox List: {{ item.checkbox_list }}</p>
+        {% endfor %}
+    </div>
+</body>
+</html>

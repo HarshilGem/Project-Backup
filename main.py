@@ -2,7 +2,7 @@ from config_file import read_config
 from file_operations import start_copy
 from time import sleep
 
-config_file = "D:\\HarshilBackupProject\\project_backup.config"
+config_file = "D:\\project_backup.config" #Location of config file
 
 if __name__ == '__main__':
     print("Running")
