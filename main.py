@@ -19,8 +19,8 @@ if __name__ == '__main__':
 
     print("Completed")
 
-    while True:
-        print("Loopinggggggggggggggggg")
-        start_copy(src, dest, selected_files)
+   
+    print("Loopinggggggggggggggggg")
+    start_copy(src, dest, selected_files)
         # break
-        sleep(int(interval) * 10)
+        #sleep(int(interval) * 10)
